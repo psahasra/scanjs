@@ -4,8 +4,7 @@
 // This script is for integration with Jenkins server
 // steps: npm install static
 // npm install optimist
-// npm install beautify-js
-// npm install beautifyjs
+// npm install js-beautify
 // In the Jenkins server: create a task for batch execution
 //mkdir %WORKSPACE%\reports;
 //node E:\ScanJS_Repo\ScanJS_Local\scanjs\scanner.js -t E:\GitHub\MyRepo\bodgeit -o %WORKSPACE%\reports\report_%BUILD_NUMBER%
@@ -37,6 +36,7 @@ var dive = function(dir, action) {
     var fullpath = dir + '/' + file;
     try {
       var stat = fs.statSync(fullpath);
+      //if ( stat === argv[])
     } catch(e) {
       console.log("SKIPPING FILE: Could not stat " + fullpath);
     }
@@ -80,17 +80,30 @@ for (var item in arrayOfObjects){
 }
 //console.log('File: ' + rules[1].filename + '   Line:  '+ rules[1].line);
 //console.log('Issue:  '+ rules[1].rule.name + ' Description: '+ rules[1].rule.desc + '  Threat:  '+ rules[1].rule.threat);
+
+
 function createHtmlTable(){
 
-  var table = '<html><title> ScanJS security test report</title><table border="1" style="width:100%">'; 
-  var cell1;
+  var table = '<html><title> ScanJS security test report</title><head><style>tr:hover {background-color: #f2f2f2} th{background-color: black; color: white;}table {border: 1px solid black;}th, td {padding: 15px;text-align: left;}</style></head><body><table>'; 
+  var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
 
-  for(var i=0 ; i< rules.length; i++){
-    table = table + '\n'+ '<tr>'+cell1;
-    cell1 = '<td>'+'file: '+ '<a href="file:///' + rules[i].filename +'"> '+ rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   line:  '+ rules[i].line + '</td>' + '<td>'+'Issue:  '+ rules[i].rule.name + '</td>' + '<td>'+' Description: '+ rules[i].rule.desc + '</td>' + '<td>'+'  Threat:  '+ rules[i].rule.threat+ '</td>' ; 
+/*  for(var i=0 ; i< rules.length; i++){
+    table = table + '<tr>'+cell1;
+    cell1 = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
+    + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
+    + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
+    + rules[i].rule.threat+ '</td>' ; 
+    table = table + '\n' + '</tr>'
+  }*/
+    for(var i=0 ; i< rules.length; i++){
+    table = table + '<tr>'+cell1;
+    cell1 = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
+    + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
+    + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
+    + rules[i].rule.threat+ '</td>' ; 
     table = table + '\n' + '</tr>'
   }
-  table = table+ '\n'+ '</table></html>';
+  table = table+ '\n'+ '</table></body></html>';
   return table;
 }
 

@@ -4,24 +4,24 @@
     "source": "eval()",
     "testhit": "eval('jsCode'+usercontrolledVal )",
     "testmiss": "eval",
-    "desc": "Controlling of the first argument to eval(...) results in direct script execution.",
-    "threat": "Execution Sink"
+    "desc": " Category: Insecure code execution. Controlling of the first argument to eval(...) results in direct script execution. Guideline- Eval is evil, never use it.https://www.owasp.org/index.php/OWASP_AJAX_Security_Guidelines#Don.27t_use_eval",
+    "threat": "HIGH"
   },
   {
     "name": "global.eval",
     "source": "$_any.eval()",
     "testhit": "window.eval('jsCode'+usercontrolledVal )",
     "testmiss": "eval",
-    "desc": "Controlling of the first argument to eval(...) results in direct script execution.",
-    "threat": "Execution Sink"
+    "desc": "Category: Insecure code execution. Avoid sticking user data in insecure functions like eval. Guideline- Eval is evil, never use it. https://www.owasp.org/index.php/OWASP_AJAX_Security_Guidelines#Don.27t_use_eval",
+    "threat": "HIGH"
   },
   {
     "name": "new Function",
     "source": "new Function()",
     "testhit": "new Function('jsCode'+usercontrolledVal ) ;\n new Function('arg','arg2','jsCode'+usercontrolledVal )",
     "testmiss": "Function",
-    "desc": "Controlling of the first argument to Function(...) results in direct script execution.",
-    "threat": "Execution Sink"
+    "desc": "Category: Insecure code execution. The use of insecure functions in JavaScript can cause insecure code execution. More specifically this means using functions that build JavaScript from strings- eval(string), new Function(string), setTimeout(string, time), setInterval(string, time). Please refer to OWASP DOM XSS Prevention Rule #3 in following- https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet ",
+    "threat": "HIGH"
   },
   {
     "name": "call Function",
@@ -29,7 +29,7 @@
     "testhit": "Function('jsCode'+usercontrolledVal ) ;\n Function('arg','arg2','jsCode'+usercontrolledVal )",
     "testmiss": "Function",
     "desc": "Controlling of the first argument to Function(...) results in direct script execution.",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "setTimeout",
@@ -37,7 +37,7 @@
     "testhit": "setTimeout('jsCode'+usercontrolledVal ,timeMs)",
     "testmiss": "setTimeout",
     "desc": "Calling setTimeout with a first argument as string (or string concatenation) with user input may lead to XSS",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "global.setTimeout",
@@ -45,7 +45,7 @@
     "testhit": "global.setTimeout('jsCode'+usercontrolledVal ,timeMs)",
     "testmiss": "setTimeout",
     "desc": "Calling setTimeout with a first argument as string (or string concatenation) with user input may lead to XSS",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "setInterval",
@@ -53,7 +53,7 @@
     "testhit": "setInterval('jsCode'+usercontrolledVal ,timMs)",
     "testmiss": "setInterval",
     "desc": "Calling setInterval with a first argument as string (or string concatenation) with user input may lead to XSS",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "global.setInterval",
@@ -61,7 +61,7 @@
     "testhit": "global.setInterval('jsCode'+usercontrolledVal ,timMs)",
     "testmiss": "setInterval",
     "desc": "Calling setInterval with a first argument as string (or string concatenation) with user input may lead to XSS",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "setImmediate",
@@ -69,7 +69,7 @@
     "testhit": "setImmediate('jsCode'+usercontrolledVal )",
     "testmiss": "setImmediate",
     "desc": "Calling setImmediate with a first argument as string (or string concatenation) with user input may lead to XSS",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "global.setImmediate",
@@ -77,7 +77,7 @@
     "testhit": "global.setImmediate('jsCode'+usercontrolledVal )",
     "testmiss": "setImmediate",
     "desc": "Calling setImmediate with a first argument as string (or string concatenation) with user input may lead to XSS",
-    "threat": "Execution Sink"
+    "threat": "HIGH"
   },
   {
     "name": "execScript",
@@ -85,7 +85,7 @@
     "testhit": "execScript('jsCode'+usercontrolledVal ,'JScript')",
     "testmiss": "execSript",
     "desc": "Using execScript with user input leads to Cross Site Scripting (Internet Explorer only)",
-    "threat": "Execution Sink"
+    "threat": "MEDIUM"
   },
   {
     "name": "crypto.generateCRMFRequest",
@@ -93,7 +93,7 @@
     "testhit": "crypto.generateCRMFRequest('CN=0',0,0,null,'jsCode'+usercontrolledVal,384,null,'rsa-dual-use')",
     "testmiss": "crypto.generateCRMFRequest",
     "desc": "Due to a bug in Firefox, this function may be used as an obfuscated way to call execute scripts from strings (like eval). This may lead to Cross-Site-Scripting.",
-    "threat": "Execution Sink"
+    "threat": "MEDIUM"
   },
   {
     "name": "document.write ",
@@ -101,7 +101,7 @@
     "testhit": "document.write('test')",
     "testmiss": "document.write",
     "desc": "Writing user specified HTML to the DOM may lead to Cross-Site Scripting",
-    "threat": "HTMLElement Sink"
+    "threat": "HIGH"
   },
   {
     "name": "document.writeln",
@@ -109,7 +109,7 @@
     "testhit": "document.writeln('test')",
     "testmiss": "document.writeln",
     "desc": "Writing user specified HTML to the DOM may lead to Cross-Site Scripting",
-    "threat": "HTMLElement Sink"
+    "threat": "HIGH"
   },
   {
     "name": ".innerHTML ",
@@ -117,7 +117,7 @@
     "testhit": "a.innerHTML=foo;a.innerHTML=foo+'bar'",
     "testmiss": "a.innerHTML='foo';a.innerHTML='foo'+'bar'",
     "desc": "Writing user specified HTML to the DOM may lead to Cross-Site Scripting",
-    "threat": "HTMLElement Sink"
+    "threat": "HIGH"
   },
   {
     "name": ".outerHTML ",
@@ -125,7 +125,7 @@
     "testhit": "a.outerHTML=foo",
     "testmiss": "outerHTML",
     "desc": "Writing user specified HTML to the DOM may lead to Cross-Site Scripting",
-    "threat": "HTMLElement Sink"
+    "threat": "HIGH"
   },
   {
     "name": "insertAdjacentHTML()",
@@ -133,31 +133,31 @@
     "testhit": "insertAdjacentHTML(foo)",
     "testmiss": "insertAdjacentHTML",
     "desc": "Writing user specified HTML to the DOM may lead to Cross-Site Scripting",
-    "threat": "HTMLElement Sink"
+    "threat": "HIGH"
   },
   {
     "name": "$_any.createContextualFragment",
     "source": "$_any.createContextualFragment",
     "testhit": "foo.createContextualFragment",
     "testmiss": "createContextualFragment",
-    "desc": "",
-    "threat": "HTMLElement Sink"
+    "desc": "This code construct me lead to the DOM based XSS. Please refer to following http://www.idt.mdh.se/utbildning/exjobb/files/TR1759.pdf",
+    "threat": "HIGH"
   },
   {
     "name": "$_any.location=",
     "source": "$_any.location=$_unsafe",
     "testhit": "foo.location=bar",
     "testmiss": "foo.location==bar",
-    "desc": "Assignments to the document's location may lead to spoofing and unexpected redirects. Furthermore, it can cause Cross-Site Scripting, when javascipt: URIs are used",
-    "threat": "Location Sink"
+    "desc": "Assignments to the document's location may lead to spoofing and unexpected redirects. Furthermore, it can cause Cross-Site Scripting, when javascript- URIs are used. Please refer to following for details- https://www.owasp.org/index.php/Testing_for_JavaScript_Execution_%28OTG-CLIENT-002%29 . Also, refer to https://www.owasp.org/index.php/Testing_for_HTML_Injection_%28OTG-CLIENT-003%29",
+    "threat": "HIGH"
   },
   {
     "name": "$_any.href=",
     "source": "$_any.href=$_unsafe",
     "testhit": "foo.href=bar",
     "testmiss": "foo.href==bar",
-    "desc": "Assignments to the document's location may lead to spoofing and unexpected redirects. Furthermore, it can cause Cross-Site Scripting, when javascipt: URIs are used",
-    "threat": "Location Sink"
+    "desc": "Assignments to the document's location may lead to spoofing and unexpected redirects. Furthermore, it can cause Cross-Site Scripting, when javascript- URIs are used",
+    "threat": "HIGH"
   },
   {
     "name": "$_any.pathname=",
@@ -732,8 +732,8 @@
     "source": "navigator.mozSettings",
     "testhit": "window.navigator.mozSettings",
     "testmiss": "",
-    "desc": "Usage of sensThis function is only available to higher privileged Firefox OS applications. It allows access to the phone's settingsitive API",
-    "threat": "Certified API"
+    "desc": "Usage of sensThis function is only available to higher privileged Firefox OS applications. It allows access to the phone's setting. Certified API is used. ",
+    "threat": "Informational"
   },
   {
     "name": "sms permission",
@@ -772,95 +772,95 @@
     "source": "navigator.mozTelephony",
     "testhit": "navigator.mozTelephony.stopTone(this.serviceId);",
     "testmiss": "",
-    "desc": "Usage of sensitive API",
-    "threat": "Certified API"
+    "desc": "Usage of sensitive API. Certified API is used. Please review the code. If this is mobile application code, please review usecase as well",
+    "threat": "Informational"
   },
   {
     "name": "time permission",
     "source": "navigator.mozTime",
     "testhit": "_mozTime = window.navigator.mozTime;",
     "testmiss": "",
-    "desc": "This function is only available to higher privileged Firefox OS applications.",
-    "threat": ""
+    "desc": "This function is only available to higher privileged Firefox OS applications. Certified API is used. Please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "video-capture permission",
     "source": "navigator.getUserMedia",
     "testhit": "navigator.getUserMedia({video:true});",
     "testmiss": "",
-    "desc": "This function allows prompting for audio and video recording.",
-    "threat": ""
+    "desc": "This function allows prompting for audio and video recording. Please review the code and also the usecase.",
+    "threat": "MEDIUM"
   },
   {
     "name": "voicemail permission",
     "source": "navigator.mozVoicemail",
     "testhit": "var voicemail = navigator.mozVoicemail;",
     "testmiss": "",
-    "desc": "This function is only available to higher privileged Firefox OS applications. It allows controlling the phone's Voicemail features.",
-    "threat": "Certified API"
+    "desc": "This function is only available to higher privileged Firefox OS applications. It allows controlling the phone's Voicemail features. Certified API is used. Please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "wappush permission",
     "source": "$_any.mozSetMessageHandler('wappush-received')",
     "testhit": "window.navigator.mozSetMessageHandler('wappush-received', wpm_onWapPushReceived);",
     "testmiss": "",
-    "desc": "This specifies a handler for WAP Push notifications. In general, mozSetMessageHandler allows handling WebActivities. The origin of the activity and its data might be untrusted.",
-    "threat": ""
+    "desc": "This API call- mozSetMessageHandler('wappush-received') specifies a handler for WAP Push notifications. In general, mozSetMessageHandler allows handling WebActivities. The origin of the activity and its data might be untrusted.",
+    "threat": "MEDIUM"
   },
   {
     "name": "webapps manage",
     "source": "$_any.mgmt",
     "testhit": "var req = navigator.mozApps.mgmt.getAll();",
     "testmiss": "",
-    "desc": "This function is only available to higher privileged Firefox OS applications. It allows managing the phone's app.",
-    "threat": ""
+    "desc": "This function is only available to higher privileged Firefox OS applications. It allows managing the phone's app. Please review the code. If this is a mobile application, review the usecase for which this code is implemented.",
+    "threat": "Informational"
   },
   {
     "name": "wifi-manage permission",
     "source": "navigator.mozWifiManager",
     "testhit": "navigator.mozWifiManager",
     "testmiss": "",
-    "desc": "This function is only available to higher privileged Firefox OS applications. It allows managing the Wifi features of the phone.",
-    "threat": "Certified API"
+    "desc": "This function is only available to higher privileged Firefox OS applications. It allows managing the Wifi features of the phone. Certified API is used. Please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "mozkeyboard",
     "source": "navigator.mozKeyboard",
     "testhit": "var keyboard = navigator.mozKeyboard || navigator.mozInputMethod;",
     "testmiss": "",
-    "desc": "Usage of sensitive API",
-    "threat": ""
+    "desc": "Usage of sensitive API, the mozKeyboard API is used, which is sensitive, please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "cell broadcasts",
     "source": "navigator.mozCellBroadcast",
     "testhit": "navigator.mozCellBroadcast.onreceived = this.show.bind(this);",
     "testmiss": "",
-    "desc": "Usage of sensitive API",
-    "threat": ""
+    "desc": "Usage of sensitive API, the cellbroadcast API is used, which is sensitive, please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "mobile connection api",
     "source": "navigator.mozMobileConnection",
     "testhit": "var conn = window.navigator.mozMobileConnection || window.navigator.mozMobileConnections",
     "testmiss": "",
-    "desc": "Usage of sensitive API",
-    "threat": ""
+    "desc": "Usage of sensitive API, the mobile connection API is used, which is sensitive, please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "notification api",
     "source": "navigator.mozNotification",
     "testhit": "var notification = navigator.mozNotification.createNotification(title, body, icon);",
     "testmiss": "",
-    "desc": "Usage of sensitive API",
-    "threat": ""
+    "desc": "Usage of sensitive API, the notification API is used, which is sensitive, please review the code.",
+    "threat": "Informational"
   },
   {
     "name": "assignment typo",
     "source": "if($_contains('AssignmentExpression'));",
     "testhit": "if(x=y){};",
     "testmiss": "if(x==y){x=0;}",
-    "desc": "Unintended use of AssignmentExpression in If Statement",
-    "threat": "Typo"
+    "desc": "Unintended use of AssignmentExpression in If Statement, this is a typo error and if statement is not evaluated.",
+    "threat": "Informational"
   }
 ]
