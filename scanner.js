@@ -23,7 +23,7 @@ var signatures = JSON.parse(fs.readFileSync(__dirname + "/common/rules.json", "u
 ScanJS.parser(parser);
 ScanJS.loadRules(signatures);
 
-var argv = require('optimist').usage('Usage: $node scan.js -t [path/to/app] -o [resultFile.json]').demand(['t']).argv;
+var argv = require('optimist').usage('Usage: $node scan.js -t [path/to/app] -o [resultFile.json] -s [high/medium/all]').demand(['t']).argv;
 
 var dive = function(dir, action) {
   if( typeof action !== 'function') {
@@ -82,11 +82,11 @@ for (var item in arrayOfObjects){
 //console.log('Issue:  '+ rules[1].rule.name + ' Description: '+ rules[1].rule.desc + '  Threat:  '+ rules[1].rule.threat);
 
 
-function createHtmlTable(){
+function createHtmlTableHIGH(){
 
   var table = '<html><title> ScanJS security test report</title><head><style>tr:hover {background-color: #f2f2f2} th{background-color: black; color: white;}table {border: 1px solid black;}th, td {padding: 15px;text-align: left;}</style></head><body><table>'; 
   var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
-
+  var cellRow = '';
 /*  for(var i=0 ; i< rules.length; i++){
     table = table + '<tr>'+cell1;
     cell1 = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
@@ -95,9 +95,71 @@ function createHtmlTable(){
     + rules[i].rule.threat+ '</td>' ; 
     table = table + '\n' + '</tr>'
   }*/
+  table = table + cell1 ;
     for(var i=0 ; i< rules.length; i++){
+    
+    table = table + '<tr>' + cellRow
+    if (rules[i].rule.threat === "HIGH" || rules[i].rule.threat === "high")
+    {
+      cellRow = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
+      + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
+      + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
+      + rules[i].rule.threat+ '</td>' ; 
+      table = table + '\n' + '</tr>'
+    }
+  }
+  table = table+ '\n'+ '</table></body></html>';
+  return table;
+}
+
+function createHtmlTableMEDIUM(){
+
+  var table = '<html><title> ScanJS security test report</title><head><style>tr:hover {background-color: #f2f2f2} th{background-color: black; color: white;}table {border: 1px solid black;}th, td {padding: 15px;text-align: left;}</style></head><body><table>'; 
+  var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
+  var cellRow = '';
+/*  for(var i=0 ; i< rules.length; i++){
     table = table + '<tr>'+cell1;
     cell1 = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
+    + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
+    + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
+    + rules[i].rule.threat+ '</td>' ; 
+    table = table + '\n' + '</tr>'
+  }*/
+  table = table + cell1 ;
+    for(var i=0 ; i< rules.length; i++){
+    
+    table = table + '<tr>' + cellRow
+    if (rules[i].rule.threat === "HIGH" || rules[i].rule.threat === "high" || rules[i].rule.threat === "medium" || rules[i].rule.threat === "MEDIUM")
+    {
+      cellRow = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
+      + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
+      + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
+      + rules[i].rule.threat+ '</td>' ; 
+      table = table + '\n' + '</tr>'
+    }
+  }
+  table = table+ '\n'+ '</table></body></html>';
+  return table;
+}
+
+function createHtmlTableALL(){
+
+  var table = '<html><title> ScanJS security test report</title><head><style>tr:hover {background-color: #f2f2f2} th{background-color: black; color: white;}table {border: 1px solid black;}th, td {padding: 15px;text-align: left;}</style></head><body><table>'; 
+  var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
+  var cellRow = '';
+/*  for(var i=0 ; i< rules.length; i++){
+    table = table + '<tr>'+cell1;
+    cell1 = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
+    + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
+    + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
+    + rules[i].rule.threat+ '</td>' ; 
+    table = table + '\n' + '</tr>'
+  }*/
+  table = table + cell1 ;
+    for(var i=0 ; i< rules.length; i++){
+    
+    table = table + '<tr>' + cellRow
+    cellRow = '<td>'+ '<a href="'+rules[i].filename+'" ng-click="predicate = ' + rules[i].filename +'\'; reverse=!reverse">'
     + rules[i].filename+ '</a>'+ '</td>' + '<td>'+ '   Line:  '+ rules[i].line + '</td>' + '<td>'
     + rules[i].rule.name + '</td>' + '<td>'+ rules[i].rule.desc + '</td>' + '<td>'
     + rules[i].rule.threat+ '</td>' ; 
@@ -107,8 +169,17 @@ function createHtmlTable(){
   return table;
 }
 
-var table = createHtmlTable();
-  fs.writeFile(name, table, function(err) {
+
+var table = '';
+if( argv.s === 'HIGH' ||argv.s === 'high'){
+ table = createHtmlTableHIGH();
+}else if (argv.s === 'medium' || argv.s === 'MEDIUM'){
+ table = createHtmlTableMEDIUM();
+}else if (argv.s === 'all'|| argv.s === 'ALL' || argv.s === undefined){
+ table = createHtmlTableALL();
+}
+
+fs.writeFile(name, table, function(err) {
     if(err) {
       console.log(err);
     } else {
@@ -128,6 +199,8 @@ if( typeof process != 'undefined' && process.argv[2]) {
  else {
     fs.mkdirSync(reportdir);
     dive(argv.t, function(file, fullpath) {
+
+      //TODO::var exclude = argv.e;
       var ext = path.extname(file.toString());
 
       if(ext == '.js') {
