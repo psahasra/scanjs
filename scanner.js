@@ -65,9 +65,9 @@ var dive = function(dir, action) {
 };*/
 
 var writeReport = function(results, name) {
-    if (fs.existsSync(name)) {
-        console.log("Error:output file already exists (" + name + "). Supply a different name using: -o [filename]")
-    }
+    //if (fs.existsSync(name)) {
+    //    console.log("Error:output file already exists (" + name + "). Supply a different name using: -o [filename]")
+    //}
     var contentsInJSON = JSON.stringify(results, null, 2);
     var arrayOfObjects = JSON.parse(contentsInJSON);
     var items = [];
@@ -186,8 +186,8 @@ var writeReport = function(results, name) {
 if (typeof process != 'undefined' && process.argv[2]) {
     results = {};
     reportname = argv.o ? argv.o : 'scanresults';
-    reportdir = "report" + "_files";
-    if (fs.existsSync(reportname) || fs.existsSync(reportdir)) {
+    //reportdir = "report" + "_files";
+    if (fs.existsSync(reportname)) {
         console.log("Error:output file or dir already exists (" + reportname + "). Supply a different name using: -o [filename]")
 
     } else {
