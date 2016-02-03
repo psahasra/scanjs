@@ -1,0 +1,22 @@
+#issues {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#issues td, #isssues th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#issues tr:nth-child(even){background-color: #f2f2f2}
+
+#issues tr:hover {background-color: #ddd;}
+
+#issues th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: #4CAF50;
+    color: white;
+}
