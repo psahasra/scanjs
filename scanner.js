@@ -102,7 +102,7 @@ var writeReport = function(results, name) {
 
             table = table + '<tr>' + cellRow;
             if (rules[i].rule.threat === "HIGH" || rules[i].rule.threat === "high") {
-                cellRow = '<td>' + '<a href="' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+                cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
                 table = table + '\n' + '</tr>';
 
             }
@@ -131,7 +131,7 @@ var writeReport = function(results, name) {
 
             table = table + '<tr>' + cellRow
             if (rules[i].rule.threat === "HIGH" || rules[i].rule.threat === "high" || rules[i].rule.threat === "medium" || rules[i].rule.threat === "MEDIUM") {
-                cellRow = '<td>' + '<a href="' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+                cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
                 table = table + '\n' + '</tr>';
                 //counter ++;
             }
@@ -157,7 +157,7 @@ var writeReport = function(results, name) {
         for (var i = 0; i < rules.length; i++) {
             var counter = i + 1;
             table = table + '<tr>' + cellRow
-            cellRow = '<td>' + counter + '</td>' + '<td>' + '<a href="' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+            cellRow = '<td>' + counter + '</td>' + '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
             table = table + '\n' + '</tr>'
         }
         table = table + '\n' + '</table></body></html>';
