@@ -85,8 +85,11 @@ var writeReport = function(results, name) {
 
     function createHtmlTableHIGH() {
 
-        var table = '<html><title> ScanJS security test report</title><head><link rel="stylesheet" type="text/css" href="mystyle.css"></head><body><table id="issues">';
-        var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
+        /*var table = '<html><title> ScanJS security test report</title><head><link rel="stylesheet" type="text/css" href="mystyle.css"></head><body><table id="issues">';*/
+        var table = '<html><title> ScanJS security test report</title><body><table border="0" bgcolor="#a3a3a3" id="issues">';
+        /*var table = '<html><title> ScanJS security test report</title><body><table style="font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;border-collapse:collapse;width: 100%;" id="issues">';*/
+        var cell1 = '<tr bgcolor="#000099"><strong><th><font face="verdana" color="white">File Name</font></th><th><font face="verdana" color="white">Line Number</font></th><th><font face="verdana" color="white">Rule Violation</font></th><th><font face="verdana" color="white">Issue Details & Secure Coding Guideline</font></th><th><font face="verdana" color="white">Severity </font></th></strong></tr>';
+       /* var cell1 = '<tr><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">File Name</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Line Number</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Rule Violation</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Issue Details & Secure Coding Guideline</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Severity</th></tr>';*/
         var cellRow = '';
         /*  for(var i=0 ; i< rules.length; i++){
             table = table + '<tr>'+cell1;
@@ -100,9 +103,10 @@ var writeReport = function(results, name) {
         //var counter = 1;
         for (var i = 0; i < rules.length; i++) {
 
-            table = table + '<tr>' + cellRow;
+            table = table + '<tr bgcolor="#e6ffe6">' + cellRow;
             if (rules[i].rule.threat === "HIGH" || rules[i].rule.threat === "high") {
-                cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+                cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+                /*cellRow = '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + '<a href="view-source:file:///' + rules[i].filename + '">' + rules[i].filename + '</a>' + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + '   Line:  ' + rules[i].line + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + rules[i].rule.name + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + rules[i].rule.desc + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + rules[i].rule.threat + '</td>';*/
                 table = table + '\n' + '</tr>';
 
             }
@@ -114,8 +118,12 @@ var writeReport = function(results, name) {
 
     function createHtmlTableMEDIUM() {
 
-        var table = '<html><title> ScanJS security test report</title><head><link rel="stylesheet" type="text/css" href="mystyle.css"></head><body><table id="issues">';
-        var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
+      /*  var table = '<html><title> ScanJS security test report</title><head><link rel="stylesheet" type="text/css" href="mystyle.css"></head><body><table id="issues">';*/
+       //var table = '<html><title> ScanJS security test report</title><body><table style="font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;border-collapse:collapse;width: 100%;" id="issues">';
+        /*var cell1 = '<tr><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';*/
+        //var cell1 = '<tr><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">File Name</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Line Number</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Rule Violation</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Issue Details & Secure Coding Guideline</th><th style="border: 1px solid #ddd;text-align: left;padding: 8px;padding-top: 12px;padding-bottom: 12px;background-color: #4CAF50;color: white;">Severity</th></tr>';
+        var table = '<html><title> ScanJS security test report</title><body><table border="1" bgcolor="#a3a3a3" id="issues">';
+        var cell1 = '<tr bgcolor="#000099"><strong><th><font face="verdana" color="white">File Name</font></th><th><font face="verdana" color="white">Line Number</font></th><th><font face="verdana" color="white">Rule Violation</font></th><th><font face="verdana" color="white">Issue Details & Secure Coding Guideline</font></th><th><font face="verdana" color="white">Severity </font></th></strong></tr>';
         var cellRow = '';
         /*  for(var i=0 ; i< rules.length; i++){
             table = table + '<tr>'+cell1;
@@ -129,9 +137,12 @@ var writeReport = function(results, name) {
         //var counter = 1;
         for (var i = 0; i < rules.length; i++) {
 
-            table = table + '<tr>' + cellRow
+            table = table + '<tr bgcolor="#e6ffe6">' + cellRow
+           /* table = table + '<tr style="background-color: #f2f2f2">' + cellRow;*/
             if (rules[i].rule.threat === "HIGH" || rules[i].rule.threat === "high" || rules[i].rule.threat === "medium" || rules[i].rule.threat === "MEDIUM") {
-                cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+                /*cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';*/
+                /*cellRow = '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + '<a href="view-source:file:///' + rules[i].filename + '">' + rules[i].filename + '</a>' + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + '   Line:  ' + rules[i].line + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + rules[i].rule.name + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + rules[i].rule.desc + '</td>' + '<td style="border: 1px solid #ddd;text-align: left;padding: 8px;">' + rules[i].rule.threat + '</td>';*/
+                cellRow = '<td>' + '<a href="view-source:file:///' + rules[i].filename + '">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
                 table = table + '\n' + '</tr>';
                 //counter ++;
             }
@@ -142,8 +153,11 @@ var writeReport = function(results, name) {
 
     function createHtmlTableALL() {
 
-        var table = '<html><title> ScanJS security test report</title><head><link rel="stylesheet" type="text/css" href="mystyle.css"></head><body><table id="issues">';
-        var cell1 = '<tr><th>SN</th><th>File Name</th><th>Line Number</th><th>Rule Violation</th><th>Issue Details & Secure Coding Guideline</th><th>Severity</th></tr>';
+        /*var table = '<html><title> ScanJS security test report</title><head></head><body><table id="issues">';*/
+       // var table = '<html><title> ScanJS security test report</title><body><table style="font-family:"Trebuchet MS",Arial,Helvetica,sans-serif;border-collapse:collapse;width: 100%;" id="issues">';
+        var table = '<html><title> ScanJS security test report</title><body><table border="1" bgcolor="#a3a3a3" id="issues">';
+        var cell1 = '<tr bgcolor="#000099"><strong><th><font face="verdana" color="white">SN</font></th><th><font face="verdana" color="white">File Name</font></th><th><font face="verdana" color="white">Line Number</font></th><th><font face="verdana" color="white">Rule Violation</font></th><th><font face="verdana" color="white">Issue Details & Secure Coding Guideline</font></th><th><font face="verdana" color="white">Severity</font></th></tr>';
+
         var cellRow = '';
         /*  for(var i=0 ; i< rules.length; i++){
             table = table + '<tr>'+cell1;
@@ -156,8 +170,8 @@ var writeReport = function(results, name) {
         table = table + cell1;
         for (var i = 0; i < rules.length; i++) {
             var counter = i + 1;
-            table = table + '<tr>' + cellRow
-            cellRow = '<td>' + counter + '</td>' + '<td>' + '<a href="view-source:file:///' + rules[i].filename + '" ng-click="predicate = ' + rules[i].filename + '\'; reverse=!reverse">' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
+            table = table + '<tr bgcolor="#e6ffe6">' + cellRow
+            cellRow = '<td>' + counter + '</td>' + '<td>' + '<a href="view-source:file:///' + rules[i].filename + '"' + rules[i].filename + '</a>' + '</td>' + '<td>' + '   Line:  ' + rules[i].line + '</td>' + '<td>' + rules[i].rule.name + '</td>' + '<td>' + rules[i].rule.desc + '</td>' + '<td>' + rules[i].rule.threat + '</td>';
             table = table + '\n' + '</tr>'
         }
         table = table + '\n' + '</table></body></html>';
@@ -194,10 +208,15 @@ if (typeof process != 'undefined' && process.argv[2]) {
        // fs.mkdirSync(reportdir);
         dive(argv.t, function(file, fullpath) {
 
-            //TODO::var exclude = argv.e;
+            /*var exclude1 = path.normalize(argv.e1);
+            var exclude2 = path.normalize(argv.e2);
+            var exclude2 = path.normalize(argv.e3);
+*/
             var ext = path.extname(file.toString());
 
-            if (ext == '.js') {
+            //var directoryNameOfScannedFile = path.dirname(file.toString());
+
+            if (ext == '.js' ){ //&& directoryNameOfScannedFile !== exclude1 && directoryNameOfScannedFile !== exclude2 && directoryNameOfScannedFile !== exclude3) {
                 var content = fs.readFileSync(fullpath, 'utf8');
                 //beautify source so result snippet is meaningful
                 var content = beautify(content, {
