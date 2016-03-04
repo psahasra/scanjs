@@ -35,6 +35,7 @@ var dive = function(dir, action) {
     list = fs.readdirSync(dir);
     list.forEach(function(file) {
         var fullpath = dir + '/' + file;
+
         try {
             var stat = fs.statSync(fullpath);
             //if ( stat === argv[])
@@ -44,6 +45,7 @@ var dive = function(dir, action) {
         if (stat && stat.isDirectory()) {
             dive(fullpath, action);
         } else {
+            console.log("Scanning File: "+ fullpath);
             action(file, fullpath);
         }
     });
@@ -223,15 +225,19 @@ if (typeof process != 'undefined' && process.argv[2]) {
                     indent_size: 2
                 });
 
-                var ast = parser.parse(content, {
-                    locations: true
-                });
+                try{
+                    var ast = parser.parse(content, {
+                        locations: true
+                    });
 
-                var scanresult = ScanJS.scan(ast, fullpath);
-                if (scanresult.type == 'error') {
-                    console.log("SKIPPING FILE: Error in " + fullpath + ", at Line " + scanresult.error.loc.line + ", Column " + scanresult.error.loc.column + ": " + scanresult.error.message);
+                    var scanresult = ScanJS.scan(ast, fullpath);
+                    if (scanresult.type == 'error') {
+                        console.log("SKIPPING FILE: Error in " + fullpath + ", at Line " + scanresult.error.loc.line + ", Column " + scanresult.error.loc.column + ": " + scanresult.error.message);
+                    }
+                    results[fullpath] = scanresult;
+                }catch(e){
+                    console.log("There is a syntax error in file that is being scanned");
                 }
-                results[fullpath] = scanresult;
             }
         });
         // Flatten report file to remove files with no findings and tests with no results (i.e. empty arr)
